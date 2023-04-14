@@ -10,7 +10,7 @@ URL = f'https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/'
 
 params = {
     'step' : 60,
-    'limit' : 10 # 1 .. 1000
+    'limit' : 1000 # 1 .. 1000
 }
 
 data = requests.get(URL, params=params).json()
@@ -36,4 +36,5 @@ fig.update_layout(yaxis_title='BTCUSDT pair', xaxis_title='Date-time') # Name ax
 
 # Display plot
 fig.show()
+
 
