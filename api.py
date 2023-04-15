@@ -5,26 +5,38 @@ import datetime
 import plotly.graph_objects as go
 
 currency_pair = 'btcusd'
-
 URL = f'https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/'
 
-params = {
-    'step' : 60,
-    'limit' : 1000 # 1 .. 1000
-}
+start = '2020-01-01'
+end = '2020-01-02'
 
-data = requests.get(URL, params=params).json()
+# Create a time range
+dates = pd.date_range(start, end, freq='1H')
 
-# for line in data['data']['ohlc']:
-#     print(line)
-    
-data = data['data']['ohlc']
+# Transform ns -> s and into int, make a list
+dates = [int(x.value/10**9) for x in list(dates)]
 
-df = pd.DataFrame(data)
+# Display time periods
+for first, last in zip(dates, dates[1:]):
+    print(pd.to_datetime(first, unit='s'), ' --> ', pd.to_datetime(last, unit='s'))
+    print(first, ' --> ', last)
 
-df['datetime'] = df['timestamp'].apply(lambda x: datetime.datetime.fromtimestamp(int(x)))
+    params = {
+        'step' : 60, # seconds
+        'limit' : 1000, # 1 .. 1000
+        'start' : first,
+        'end' : last,
+    }
 
-print(df)
+    data = requests.get(URL, params=params).json()
+        
+    data = data['data']['ohlc']
+
+    df = pd.DataFrame(data)
+
+    df['datetime'] = df['timestamp'].apply(lambda x: pd.to_datetime(int(x), unit='s'))
+
+    print(df)
 
 # Configure plot
 fig = go.Figure(data=[go.Candlestick(x=df['datetime'], open=df['open'],
@@ -35,6 +47,6 @@ fig.update_layout(template='plotly_dark') # Add some style
 fig.update_layout(yaxis_title='BTCUSDT pair', xaxis_title='Date-time') # Name axes
 
 # Display plot
-fig.show()
+# fig.show()
 
 
