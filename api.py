@@ -16,6 +16,8 @@ dates = pd.date_range(start, end, freq='1H')
 # Transform ns -> s and into int, make a list
 dates = [int(x.value/10**9) for x in list(dates)]
 
+master_data = []
+
 # Display time periods
 for first, last in zip(dates, dates[1:]):
     print(pd.to_datetime(first, unit='s'), ' --> ', pd.to_datetime(last, unit='s'))
@@ -31,12 +33,25 @@ for first, last in zip(dates, dates[1:]):
     data = requests.get(URL, params=params).json()
         
     data = data['data']['ohlc']
+    
+    master_data += data
 
-    df = pd.DataFrame(data)
+# print('Master')
+# Set all the resulting data as dataframe
+df = pd.DataFrame(master_data)
+# Make timestamp str -> int
+df = df.drop_duplicates()
 
-    df['datetime'] = df['timestamp'].apply(lambda x: pd.to_datetime(int(x), unit='s'))
+df['timestamp'] = df['timestamp'].astype(int)
 
-    print(df)
+df.sort_values(by='timestamp')
+
+# df['datetime'] = df['timestamp'].apply(lambda x: pd.to_datetime(int(x), unit='s'))
+ 
+df = df [ df['timestamp'] >= dates[0] ]
+
+
+print(df)
 
 # Configure plot
 fig = go.Figure(data=[go.Candlestick(x=df['datetime'], open=df['open'],
@@ -47,6 +62,6 @@ fig.update_layout(template='plotly_dark') # Add some style
 fig.update_layout(yaxis_title='BTCUSDT pair', xaxis_title='Date-time') # Name axes
 
 # Display plot
-# fig.show()
+fig.show()
 
 
