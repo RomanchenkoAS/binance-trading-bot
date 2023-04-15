@@ -8,7 +8,7 @@ currency_pair = 'btcusd'
 URL = f'https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/'
 
 start = '2021-11-01 00:00:00'
-end = '2021-12-30 00:00:00'
+end = '2022-01-01 00:00:00'
 
 # Create a time range
 dates = pd.date_range(start, end, freq='16H')
@@ -59,7 +59,7 @@ df.set_index('index', inplace=True)
 
 print(df)
 
-df.to_csv('data_2m.csv', index=False)
+df.to_csv('data.csv', index=False)
 
 # Configure plot
 fig = go.Figure(data=[go.Candlestick(x=df['datetime'], open=df['open'],

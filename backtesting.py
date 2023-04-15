@@ -3,11 +3,11 @@ import pandas as pd
 from datetime import datetime
 import vectorbt as vbt
 
-num = 30
+num = 10
 metric = 'total_return'
 
 # Read csv file
-btc_price = pd.read_csv('btcusdt.csv')[['datetime', 'close']]
+btc_price = pd.read_csv('data_2m.csv')[['datetime', 'close']]
 
 # Make data into approriate for vectorBt format
 btc_price = btc_price.set_index("datetime")['close']
@@ -19,8 +19,8 @@ parameters = {
 }
 
 # Create evenly distributed array of entry/exit points for optimization
-entry_points = np.linspace(40, 60, num=num)
-exit_points = np.linspace(60, 40, num=num)
+entry_points = np.linspace(1, 45, num=num)
+exit_points = np.linspace(55, 99, num=num)
 
 # Make a nice numpy grid by combinating all the possibilities in those two lists
 grid = np.array(np.meshgrid(entry_points, exit_points)).T.reshape(-1,2)
@@ -42,7 +42,7 @@ pf = vbt.Portfolio.from_signals(btc_price, entries, exits)
 pf_perf = pf.deep_getattr(metric)
 
 pf_perf_matrix = pf_perf.vbt.unstack_to_df(
-    index_levels="rsi_crossed_above", column_levels="rsi_crossed_below")
+    index_levels="rsi_crossed_above", column_levels="rsi_crossed_below", symmetric=True)
 
 pf_perf_matrix.vbt.heatmap(
     xaxis_title="entry",
