@@ -3,10 +3,10 @@ import pandas as pd
 from datetime import datetime
 import vectorbt as vbt
 
-num = 50
+num = 100
 metric = 'total_return'
 
-btc_price = pd.read_csv('btcusdt.csv')[['datetime', 'close']]
+btc_price = pd.read_csv('data_10days.csv')[['datetime', 'close']]
 
 # Make data into approriate for vectorBt format
 btc_price = btc_price.set_index("datetime")['close']
@@ -21,14 +21,18 @@ parameters = {
 entry_points = np.linspace(55, 30, num=num)
 exit_points = np.linspace(45, 70, num=num)
 
-# print(entry_points)
+# Make a nice numpy grid by combinating all the possibilities in those two lists
+grid = np.array(np.meshgrid(entry_points, exit_points)).T.reshape(-1,2)
+print(grid)
+
+# print(entry_points) 
 # print(exit_points)
 
 # Define strategy: RSI = relative strength index
 rsi = vbt.RSI.run(btc_price, window=14, short_name="rsi")
 
-entries = rsi.rsi_crossed_below(list(entry_points))
-exits = rsi.rsi_crossed_above(list(exit_points))
+entries = rsi.rsi_crossed_below(list(grid[ : ,[0]]))
+exits = rsi.rsi_crossed_above(list(grid[ : ,[1]]))
 
 # Make a VectorBT calculation
 pf = vbt.Portfolio.from_signals(btc_price, entries, exits)
@@ -43,9 +47,9 @@ pf_perf_matrix.vbt.heatmap(
     xaxis_title="entry",
     yaxis_title="exit").show()
 
-print(pf_perf)
+# print(pf_perf)
 
-print(pf.stats())
+# print(pf.stats())
 
-pf.plot().show()
-print(btc_price)
+# pf.plot().show()
+# print(btc_price)

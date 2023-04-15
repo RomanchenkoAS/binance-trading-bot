@@ -8,7 +8,7 @@ currency_pair = 'btcusd'
 URL = f'https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/'
 
 start = '2020-01-01 00:00:00'
-end = '2020-02-01 00:00:00'
+end = '2020-01-10 00:00:00'
 
 # Create a time range
 dates = pd.date_range(start, end, freq='16H')
