@@ -3,10 +3,11 @@ import pandas as pd
 from datetime import datetime
 import vectorbt as vbt
 
-num = 100
+num = 30
 metric = 'total_return'
 
-btc_price = pd.read_csv('data_10days.csv')[['datetime', 'close']]
+# Read csv file
+btc_price = pd.read_csv('btcusdt.csv')[['datetime', 'close']]
 
 # Make data into approriate for vectorBt format
 btc_price = btc_price.set_index("datetime")['close']
@@ -18,8 +19,8 @@ parameters = {
 }
 
 # Create evenly distributed array of entry/exit points for optimization
-entry_points = np.linspace(55, 30, num=num)
-exit_points = np.linspace(45, 70, num=num)
+entry_points = np.linspace(40, 60, num=num)
+exit_points = np.linspace(60, 40, num=num)
 
 # Make a nice numpy grid by combinating all the possibilities in those two lists
 grid = np.array(np.meshgrid(entry_points, exit_points)).T.reshape(-1,2)
