@@ -7,22 +7,20 @@ import plotly.graph_objects as go
 currency_pair = 'btcusd'
 URL = f'https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/'
 
-start = '2020-01-01'
-end = '2020-01-02'
+start = '2020-01-01 00:00:00'
+end = '2020-01-10 00:00:00'
 
 # Create a time range
-dates = pd.date_range(start, end, freq='1H')
+dates = pd.date_range(start, end, freq='16H')
 
 # Transform ns -> s and into int, make a list
 dates = [int(x.value/10**9) for x in list(dates)]
 
 master_data = []
 
-# Display time periods
+# Request data by time periods
 for first, last in zip(dates, dates[1:]):
-    print(pd.to_datetime(first, unit='s'), ' --> ', pd.to_datetime(last, unit='s'))
-    print(first, ' --> ', last)
-
+    print(f"{pd.to_datetime(first, unit='s')} ({first}) --> {pd.to_datetime(last, unit='s')} ({last})")
     params = {
         'step' : 60, # seconds
         'limit' : 1000, # 1 .. 1000
@@ -36,20 +34,28 @@ for first, last in zip(dates, dates[1:]):
     
     master_data += data
 
-# print('Master')
 # Set all the resulting data as dataframe
 df = pd.DataFrame(master_data)
-# Make timestamp str -> int
+
+# Remove duplicate data
 df = df.drop_duplicates()
 
+# Make sure timestamps are integer type
 df['timestamp'] = df['timestamp'].astype(int)
 
+# Sort by time
 df.sort_values(by='timestamp')
 
-# df['datetime'] = df['timestamp'].apply(lambda x: pd.to_datetime(int(x), unit='s'))
- 
+# Filter rows from a specific datetime
 df = df [ df['timestamp'] >= dates[0] ]
+df = df [ df['timestamp'] < dates[-1] ]
 
+# Create a datetime column
+df['datetime'] = df['timestamp'].apply(lambda x: pd.to_datetime(x, unit='s'))
+
+# Set index from 0
+df.reset_index(inplace=True)
+df.set_index('index', inplace=True)
 
 print(df)
 
