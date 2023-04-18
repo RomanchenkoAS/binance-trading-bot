@@ -7,11 +7,11 @@ import plotly.graph_objects as go
 currency_pair = 'btcusd'
 URL = f'https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/'
 
-start = '2021-11-01 00:00:00'
-end = '2022-01-01 00:00:00'
+start = "2021-01-01"
+end = "2021-01-02"
 
 # Create a time range
-dates = pd.date_range(start, end, freq='16H')
+dates = pd.date_range(start, end, freq='12H')
 
 # Transform ns -> s and into int, make a list
 dates = [int(x.value/10**9) for x in list(dates)]
