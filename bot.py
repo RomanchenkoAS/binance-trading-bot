@@ -14,8 +14,8 @@ from datetime import datetime
 # testnet = True means all the trading is virtual
 client = Client(config("API_KEY"), config("SECRET_KEY"), testnet=True)
 asset = "BTCUSDT"
-entry = 49
-exit = 51
+entry = 45
+exit = 55
 
 # Balance check
 # balance = client.get_asset_balance(asset="BTC")
@@ -93,6 +93,8 @@ def trade_log(symbol, side, price, amount):
 
 def do_trade(account, client, asset, side, quantity):
 
+    print("[LOG] Making a trade...")
+
     if side == "buy":
         # market buy
         order = client.order_market_buy(
@@ -136,6 +138,8 @@ def do_trade(account, client, asset, side, quantity):
     
     with open("bot_account.json", "w") as f:
         f.write(json.dumps(account))
+    
+    print("[LOG] ... trade is over and logged")
 
 
 if __name__ == "__main__":
