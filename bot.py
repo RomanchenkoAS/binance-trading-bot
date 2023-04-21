@@ -14,8 +14,8 @@ from datetime import datetime
 # testnet = True means all the trading is virtual
 client = Client(config("API_KEY"), config("SECRET_KEY"), testnet=True)
 asset = "BTCUSDT"
-entry = 30
-exit = 70
+entry = 49
+exit = 51
 
 # Balance check
 # balance = client.get_asset_balance(asset="BTC")
