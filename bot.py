@@ -14,6 +14,8 @@ from datetime import datetime
 # testnet = True means all the trading is virtual
 client = Client(config("API_KEY"), config("SECRET_KEY"), testnet=True)
 asset = "BTCUSDT"
+entry = 30
+exit = 70
 
 # Balance check
 # balance = client.get_asset_balance(asset="BTC")
@@ -55,57 +57,103 @@ def create_account():
 def log(msg):
     message = f"{msg}"
     print("[LOG] ", message)
-    
+
     # Create a directory for logs if not exist
     if not os.path.isdir("logs"):
         os.mkdir("logs")
-    
+
     now = datetime.now()
-    
-    with open("logs/log.txt", "w") as f:
-        f.write(str(now))
-        f.write(message)
+    today = now.strftime("%Y-%m-%d")
+    time = now.strftime("%H-%M-%S")
+
+    with open(f"logs/{today}.txt", "a+") as log_file:
+        log_file.write(f"{time} : {msg}\n")
+
+
+def do_trade(account, client, asset, side, quantity):
+
+    if side == "buy":
+        # market buy
+        order = client.order_market_buy(
+            symbol=asset,
+            quantity=quantity,
+        )
+
+        account["is_buying"] = False
+
+    if side == "sell":
+        # market sell
+        order = client.order_market_sell(
+            symbol=asset,
+            quantity=quantity,
+        )
+
+        account["is_buying"] = True
+
+    order_id = order["orderId"]
+
+    # Until the order is fulfilled refresh it every second
+    while order["status"] != "FILLED":
+        order = client.get_order(
+            symbol=asset,
+            orderId=order_id,
+        )
+        time.sleep(1)
+
+    print(order)
+
+    # This list comprehension takes each separate part of buy, multiplies price by quantity
+    # and then sums it up to get the total price
+    price_paid = sum([float(fill["price"]) * float(fill["qty"])
+                     for fill in order["fills"]])
+
+    # print(price_paid)
+
+    # log trade
+
+    with open("bot_account.json", "w") as f:
+        f.write(json.dumps(account))
+
 
 if __name__ == "__main__":
 
     rsi = get_rsi(asset)
-    old_rsi = rsi # to check crossover event
+    old_rsi = rsi  # to check crossover event
 
-    entry = 30
-    exit = 70
+    # do_trade({}, client, asset, "buy", 0.01)
+
+    # sys.exit()
 
     while True:
-        
+
         try:
-            if not os.path.exists("bot_account.json"):\
+            if not os.path.exists("bot_account.json"):
                 create_account()
-                
+
             with open("bot_account.json") as f:
                 account = json.load(f)
-                
-            print("account: ", account)
-            
+
+            # print("account: ", account)
+
             old_rsi = rsi
             rsi = get_rsi(asset)
-            
-            log("wow much trading")
-            
+
             if account["is_buying"]:
-                
+                # If crossover up-to-down ▼
                 if rsi < entry and old_rsi > entry:
-                    pass 
-                    # trade
-            
+                    # trade buy
+                    do_trade(account, client, asset, "buy", 0.01)
+
             else:
-                
+                # If crossover bottom-up ▲
                 if rsi > exit and old_rsi < exit:
-                    pass
-                    # trade
-            
-            print(rsi)
-            
+                    # trade sell
+                    do_trade(account, client, asset, "sell", 0.01)
+
+            print("current rsi = ", rsi)
+
             time.sleep(5)
-            
+
         except Exception as _ex:
-            print("[ERR] Error: ", _ex)
+            log("[ERR] " + str(_ex))
             sys.exit()
