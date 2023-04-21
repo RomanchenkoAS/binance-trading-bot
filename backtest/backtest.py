@@ -2,17 +2,23 @@ import numpy as np
 import pandas as pd
 import vectorbt as vbt
 
+# Preferences
 num = 10
-metric = "total_return"
+metric = "positions.win_rate" # total_return | positions.win_rate
+metric = ("max_drawdown", ) # Must be a tuple
 
-btc_price = pd.read_csv("tutorial.csv")[["timestamp", "close"]]
+# Read data from csv
+btc_price = pd.read_csv("data_1d.csv")[["timestamp", "close"]]
 btc_price["date"] = pd.to_datetime(btc_price["timestamp"], unit="s")
 btc_price = btc_price.set_index("date")["close"]
 
-
+# VectorBT part
 rsi = vbt.RSI.run(btc_price, window=14, short_name="rsi")
+
+# Make a grid
 entry_points = np.linspace(1, 45, num=num)
 exit_points = np.linspace(55, 99, num=num)
+
 grid = np.array(np.meshgrid(entry_points, exit_points)).T.reshape(-1, 2)
 entries = rsi.rsi_crossed_below(list(grid[:, [0]]))
 exits = rsi.rsi_crossed_above(list(grid[:, [1]]))
