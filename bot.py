@@ -69,6 +69,27 @@ def log(msg):
     with open(f"logs/{today}.txt", "a+") as log_file:
         log_file.write(f"{time} : {msg}\n")
 
+def trade_log(symbol, side, price, amount):
+    
+    log(f"{side} {symbol} {amount} for {price} per")
+    
+    if not os.path.isdir("trades"):
+        os.mkdir("trades")
+        
+    now = datetime.now()
+    today = now.strftime("%Y-%m-%d")
+    time = now.strftime("%H-%M-%S")
+    
+    # If file not present - initialize it with a header
+    if not os.path.isfile(f"trades/{today}.csv"):
+        with open(f"trades/{today}.csv", "w") as trade_file:
+            trade_file.write("symbol,side,amount,price\n")
+            
+    # Actual write
+    with open(f"trades/{today}.csv", "a+") as trade_file:
+        trade_file.write(f"{symbol},{side},{amount},{price}\n")
+        
+    
 
 def do_trade(account, client, asset, side, quantity):
 
@@ -109,8 +130,9 @@ def do_trade(account, client, asset, side, quantity):
 
     # print(price_paid)
 
-    # log trade
-
+    # Log trade
+    trade_log(asset, side, price_paid, quantity)
+    
     with open("bot_account.json", "w") as f:
         f.write(json.dumps(account))
 
