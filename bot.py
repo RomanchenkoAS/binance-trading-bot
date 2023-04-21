@@ -121,6 +121,7 @@ def do_trade(account, client, asset, side, quantity):
         )
         time.sleep(1)
 
+    print("Made order: ")
     print(order)
 
     # This list comprehension takes each separate part of buy, multiplies price by quantity
@@ -142,10 +143,7 @@ if __name__ == "__main__":
     rsi = get_rsi(asset)
     old_rsi = rsi  # to check crossover event
 
-    # do_trade({}, client, asset, "buy", 0.01)
-
-    # sys.exit()
-
+    # Main working loop
     while True:
 
         try:
@@ -172,7 +170,7 @@ if __name__ == "__main__":
                     # trade sell
                     do_trade(account, client, asset, "sell", 0.01)
 
-            print("current rsi = ", rsi)
+            print("[INFO] current rsi = ", rsi)
 
             time.sleep(5)
 
