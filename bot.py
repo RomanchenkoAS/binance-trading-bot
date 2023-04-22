@@ -8,18 +8,18 @@ import pandas_ta as ta
 import time
 import json
 import os
-import sys
 from datetime import datetime
 
 # testnet = True means all the trading is virtual
 client = Client(config("API_KEY"), config("SECRET_KEY"), testnet=True)
 asset = "BTCUSDT"
-entry = 45
-exit = 55
+entry = 33
+exit = 63.1
 
 # Balance check
 # balance = client.get_asset_balance(asset="BTC")
 # print(balance)
+
 
 
 def fetch_klines(asset):
@@ -38,6 +38,7 @@ def fetch_klines(asset):
 def get_rsi(asset):
 
     klines = fetch_klines(asset)
+    # Use tech analysis pandas module
     klines["rsi"] = ta.rsi(close=klines["price"], length=14)
 
     return klines["rsi"].iloc[-1]
@@ -180,4 +181,5 @@ if __name__ == "__main__":
 
         except Exception as _ex:
             log("[ERR] " + str(_ex))
+            time.sleep(30)
             # sys.exit()

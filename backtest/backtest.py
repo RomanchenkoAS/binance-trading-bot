@@ -3,7 +3,7 @@ import pandas as pd
 import vectorbt as vbt
 
 # Preferences
-num = 10
+num = 35
 # metric = "positions.win_rate" # total_return | positions.win_rate
 # metric = ("max_drawdown", ) # Must be a tuple
 metric = "total_return"
@@ -17,8 +17,8 @@ btc_price = btc_price.set_index("date")["close"]
 rsi = vbt.RSI.run(btc_price, window=100, short_name="rsi")
 
 # Make a grid
-entry_points = np.linspace(30, 35, num=num)
-exit_points = np.linspace(60, 64, num=num)
+entry_points = np.linspace(32.3, 33.8, num=num)
+exit_points = np.linspace(63, 64.2, num=num)
 
 grid = np.array(np.meshgrid(entry_points, exit_points)).T.reshape(-1, 2)
 entries = rsi.rsi_crossed_below(list(grid[:, [0]]))
