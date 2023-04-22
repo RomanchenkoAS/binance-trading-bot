@@ -1,16 +1,20 @@
 import requests
 import pandas as pd
+import sys 
+from datetime import datetime, timedelta
 
 currency_pair = "btcusd"
 url = f"https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/"
 
-start = "2021-01-01"
-end = "2021-01-02"
+# Before
+start = datetime.now() - timedelta(30)
+# Now
+end = datetime.now()
 
 dates = pd.date_range(start, end, freq="6H")
 dates = [int(x.value/10**9) for x in list(dates)]
 
-print(dates)
+print([x.strftime("%m/%d/%Y, %H:%M:%S") for x in dates])
 
 master_data = []
 

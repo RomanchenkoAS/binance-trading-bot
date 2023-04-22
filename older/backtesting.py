@@ -7,7 +7,7 @@ num = 10
 metric = "total_return" # total_return | positions.win_rate
 
 # Read csv file
-btc_price = pd.read_csv("data.csv")[["timestamp", "close"]]
+btc_price = pd.read_csv("data_2m.csv")[["timestamp", "close"]]
 btc_price["date"] = pd.to_datetime( btc_price["timestamp"], unit = "s")
 
 # Make data into approriate for vectorBt format

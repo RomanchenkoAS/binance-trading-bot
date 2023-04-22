@@ -30,3 +30,7 @@
 19-04-57 : buy BTCUSDT 0.01 for 273.28176596000003 per
 19-08-04 : sell BTCUSDT 0.01 for 273.3918 per
 19-18-12 : buy BTCUSDT 0.01 for 273.3145 per
+19-39-31 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+19-54-35 : sell BTCUSDT 0.01 for 272.86400000000003 per
+19-55-49 : buy BTCUSDT 0.01 for 272.7345 per
+20-15-09 : sell BTCUSDT 0.01 for 272.6698 per
