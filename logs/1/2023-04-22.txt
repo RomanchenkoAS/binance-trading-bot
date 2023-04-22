@@ -1,0 +1,36 @@
+00-12-18 : sell BTCUSDT 0.01 for 279.35360000000003 per
+00-31-48 : buy BTCUSDT 0.01 for 279.128 per
+12-05-22 : buy BTCUSDT 0.01 for 273.53720000000004 per
+12-46-01 : sell BTCUSDT 0.01 for 273.324 per
+13-15-09 : buy BTCUSDT 0.01 for 273.3207 per
+13-20-16 : sell BTCUSDT 0.01 for 273.40225971999996 per
+13-23-46 : buy BTCUSDT 0.01 for 273.28900000000004 per
+13-34-04 : sell BTCUSDT 0.01 for 273.36 per
+13-39-05 : buy BTCUSDT 0.01 for 273.2255 per
+14-20-41 : sell BTCUSDT 0.01 for 272.8086 per
+14-27-10 : buy BTCUSDT 0.01 for 272.7504 per
+14-51-29 : sell BTCUSDT 0.01 for 272.6513 per
+14-55-05 : buy BTCUSDT 0.01 for 272.534 per
+15-11-04 : sell BTCUSDT 0.01 for 272.47810000000004 per
+15-14-08 : buy BTCUSDT 0.01 for 272.2787 per
+15-16-19 : sell BTCUSDT 0.01 for 272.4536 per
+15-27-50 : buy BTCUSDT 0.01 for 272.396 per
+15-35-20 : sell BTCUSDT 0.01 for 272.4384162 per
+15-54-07 : buy BTCUSDT 0.01 for 272.4395 per
+16-12-19 : sell BTCUSDT 0.01 for 272.48587259 per
+16-16-28 : buy BTCUSDT 0.01 for 272.3825 per
+16-54-46 : sell BTCUSDT 0.01 for 272.2634 per
+17-26-51 : buy BTCUSDT 0.01 for 272.4399 per
+17-29-41 : sell BTCUSDT 0.01 for 272.4918 per
+17-40-02 : buy BTCUSDT 0.01 for 272.4621 per
+17-41-15 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-42-14 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-42-22 : sell BTCUSDT 0.01 for 272.6059 per
+18-42-01 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+19-04-57 : buy BTCUSDT 0.01 for 273.28176596000003 per
+19-08-04 : sell BTCUSDT 0.01 for 273.3918 per
+19-18-12 : buy BTCUSDT 0.01 for 273.3145 per
+19-39-31 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+19-54-35 : sell BTCUSDT 0.01 for 272.86400000000003 per
+19-55-49 : buy BTCUSDT 0.01 for 272.7345 per
+20-15-09 : sell BTCUSDT 0.01 for 272.6698 per
