@@ -176,8 +176,8 @@ if __name__ == "__main__":
 
             print("[INFO] current rsi = ", rsi)
 
-            time.sleep(5)
+            time.sleep(2)
 
         except Exception as _ex:
             log("[ERR] " + str(_ex))
-            sys.exit()
+            # sys.exit()
