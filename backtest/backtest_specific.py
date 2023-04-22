@@ -9,7 +9,7 @@ btc_price = btc_price.set_index("date")["close"]
 
 for window in range(1, 300): #optimize range
     # VectorBT part
-    rsi = vbt.RSI.run(btc_price, window=100, short_name="rsi")
+    rsi = vbt.RSI.run(btc_price, window=window, short_name="rsi")
 
     # Levels
     entry = 33
@@ -27,4 +27,4 @@ for window in range(1, 300): #optimize range
     total_return = stats[5] 
     total_trades = stats[11]
 
-    print(f"window = {100}: return = {total_return} | trades = {total_trades}")
+    print(f"window = {window}: return = {total_return:.3f} | trades = {total_trades}")

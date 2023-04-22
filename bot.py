@@ -15,6 +15,7 @@ client = Client(config("API_KEY"), config("SECRET_KEY"), testnet=True)
 asset = "BTCUSDT"
 entry = 33
 exit = 63.1
+window = 4
 
 # Balance check
 # balance = client.get_asset_balance(asset="BTC")
@@ -39,7 +40,7 @@ def get_rsi(asset):
 
     klines = fetch_klines(asset)
     # Use tech analysis pandas module
-    klines["rsi"] = ta.rsi(close=klines["price"], length=14)
+    klines["rsi"] = ta.rsi(close=klines["price"], length=window)
 
     return klines["rsi"].iloc[-1]
 
