@@ -7,9 +7,10 @@ folder_path = 'trades'
 trades = pd.DataFrame()
 
 for filename in os.listdir(folder_path):
-    print(filename)
-    add = pd.read_csv(f"trades/{filename}")
-    trades = pd.concat([trades, add], ignore_index=True)
+    if os.path.isfile(filename):
+        print(filename)
+        add = pd.read_csv(f"trades/{filename}")
+        trades = pd.concat([trades, add], ignore_index=True)
         
 # print(trades)
 
