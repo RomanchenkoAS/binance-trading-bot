@@ -1,7 +1,7 @@
 # Requirements: python-decouple python-binance pandas pandas-ta
 # API : testnet.binance.vision
 
-from decouple import config
+from decouple import config 
 from binance.client import Client
 import pandas as pd
 import pandas_ta as ta
@@ -152,6 +152,14 @@ if __name__ == "__main__":
     # Main working loop
     while True:
 
+        current_time = time.localtime()
+        seconds = current_time.tm_sec
+        
+        # If seconds are not 00 wait 1 sec and go to the next iteration
+        if seconds != 0:
+            time.sleep(1)
+            continue
+        
         try:
             if not os.path.exists("bot_account.json"):
                 create_account()
