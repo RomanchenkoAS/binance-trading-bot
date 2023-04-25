@@ -1,7 +1,7 @@
 # Requirements: python-decouple python-binance pandas pandas-ta
 # API : testnet.binance.vision
 
-from decouple import config 
+from decouple import config
 from binance.client import Client
 import pandas as pd
 import pandas_ta as ta
@@ -20,7 +20,6 @@ window = 4
 # Balance check
 # balance = client.get_asset_balance(asset="BTC")
 # print(balance)
-
 
 
 def fetch_klines(asset):
@@ -71,27 +70,27 @@ def log(msg):
     with open(f"logs/{today}.txt", "a+") as log_file:
         log_file.write(f"{time} : {msg}\n")
 
+
 def trade_log(symbol, side, price, amount):
-    
+
     log(f"{side} {symbol} {amount} for {price} per")
-    
+
     if not os.path.isdir("trades"):
         os.mkdir("trades")
-        
+
     now = datetime.now()
     today = now.strftime("%Y-%m-%d")
     time = now.strftime("%H-%M-%S")
-    
+
     # If file not present - initialize it with a header
     if not os.path.isfile(f"trades/{today}.csv"):
         with open(f"trades/{today}.csv", "w") as trade_file:
             trade_file.write("symbol,side,amount,price\n")
-            
+
     # Actual write
     with open(f"trades/{today}.csv", "a+") as trade_file:
         trade_file.write(f"{symbol},{side},{amount},{price}\n")
-        
-    
+
 
 def do_trade(account, client, asset, side, quantity):
 
@@ -137,10 +136,10 @@ def do_trade(account, client, asset, side, quantity):
 
     # Log trade
     trade_log(asset, side, price_paid, quantity)
-    
+
     with open("bot_account.json", "w") as f:
         f.write(json.dumps(account))
-    
+
     print("[LOG] ... trade is over and logged")
 
 
@@ -154,12 +153,12 @@ if __name__ == "__main__":
 
         current_time = time.localtime()
         seconds = current_time.tm_sec
-        
+
         # If seconds are not 00 wait 1 sec and go to the next iteration
         if seconds != 0:
             time.sleep(1)
             continue
-        
+
         try:
             if not os.path.exists("bot_account.json"):
                 create_account()
@@ -184,7 +183,8 @@ if __name__ == "__main__":
                     # trade sell
                     do_trade(account, client, asset, "sell", 0.01)
 
-            print("[INFO] current rsi = ", rsi)
+            print("[INFO] current rsi =", round(rsi, 3), " |",
+                  time.strftime("%y:%m:%d %H:%M:%S", current_time))
 
             time.sleep(2)
 
