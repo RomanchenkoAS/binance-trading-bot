@@ -16,8 +16,12 @@ trades = []
 
 for index in range(0, len(df), 2):
     buy_trade = df.iloc[index]
-    sell_trade = df.iloc[index + 1]
-
+    try:
+        sell_trade = df.iloc[index + 1]
+    except IndexError:
+        # Last opened trade is not yet closed
+        continue
+    
     trade = {
         "sym": buy_trade['symbol'],
         "buy_price": buy_trade['price'],
