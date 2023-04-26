@@ -1,0 +1,6 @@
+# switch user
+su - cooldawncooldawn 
+# call gcloud
+gcloud compute ssh --zone "us-central1-c" "bot" --project "grand-proton-384711"
+
+

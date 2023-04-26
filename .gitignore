@@ -1,1 +1,4 @@
 .env
+/trades
+/logss
+*.csv
