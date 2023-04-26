@@ -31,3 +31,8 @@ for index in range(0, len(df), 2):
 trades = pd.DataFrame(trades)
 
 print(trades)
+
+
+total_profit = trades["profit"].sum(axis=0)
+
+print(f"Total profit earned = {total_profit:.2f}USDT")
