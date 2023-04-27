@@ -16,7 +16,7 @@ asset = "BTCUSDT"
 entry = 33
 exit = 63.1
 window = 4
-
+    
 # Balance check
 # balance = client.get_asset_balance(asset="BTC")
 # print(balance)
