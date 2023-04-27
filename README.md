@@ -1,5 +1,8 @@
 # algotrading
 
+API: https://www.bitstamp.net/api/
+URL: https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/
+
 Objectives:
 
 Scrape historical candlestick data from Binance exchange
