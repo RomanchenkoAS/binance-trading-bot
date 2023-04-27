@@ -36,3 +36,5 @@ print(pf_perf_matrix)
 pf_perf_matrix.vbt.heatmap(
     xaxis_title="entry",
     yaxis_title="exit").show()
+
+# pf.plot().show()
