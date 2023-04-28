@@ -12,6 +12,10 @@ for filename in files:
         add = pd.read_csv(f"trades/{filename}")
         df = pd.concat([df, add], ignore_index=True)
 
+# Set the options to display unlimited rows and columns
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+
 trades = []
 
 for index in range(0, len(df), 2):
@@ -33,6 +37,8 @@ for index in range(0, len(df), 2):
     trades.append(trade)
 
 trades = pd.DataFrame(trades)
+
+
 
 print(trades)
 

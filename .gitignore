@@ -2,3 +2,5 @@
 /trades
 /logss
 *.csv
+.additions.txt
+.connection
