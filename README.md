@@ -74,7 +74,7 @@ With range entry=(30..50) & exit=(58..72):
 <img src="https://user-images.githubusercontent.com/119735427/235081891-5291af99-f4bb-43a3-be6f-bed0cbfc0ebf.png" alt="alt-text">
 </p>
 
-Now, almost 15% for a month is an outstanding strategy, let's check these entry&exit points statistic:
+Now, almost 15% for a month is an outstanding profit, let's check these entry&exit points statistic:
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/119735427/235082661-e99625f9-042e-4a71-9f4d-0801a5b72718.png" alt="alt-text">
@@ -89,5 +89,30 @@ Alongside dry text statistic we can build a plot for this strategy:
 This looks real nice, next step is **forward-testing** this strategy.
 
 #### Forward-testing (a.k.a. trading bot)
+
+Bot (bot.py) has a simple moveset: 
+- each second it makes a request to the binance api via **binance.Client** to get candlestick data
+- with candlesticks data current RSI value is calculated
+- IF it is under entry level AND the previous one was above entry level then the crossover happened
+- whenever the crossover happens a fixed amount of commodity is bought, every check and trade is recorded in log file and .csv file with trades
+- after buy, the bot does the same, but for exit level - looking an appropriate moment to sell
+
+This procedure has a few minor points.
+Bot generates a json file (if it is not present) which stores data about side it's currently on (BUY/SELL) and commodities it stores (e.g. BTCUSDT). For each trading day, it generates a separate log file and csv file with trades, so it can be both easily inspected by human (by looking at logs) and analysed procedurally (with reading .csv files).
+Since backtest was ran at candlesticks with intervals of minute, forward testing should as well only trade once a minute to comply with chosen strategy, so if a minute has not yet passed since the last check we just time.sleep(1) for one second. This also works well to reduce CPU & network load.
+
+Working bot shows this kind of output to the console :
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/119735427/235092149-1a2b0a36-e2ed-4d57-a79c-5d048d5b11a1.png" alt="alt-text">
+</p>
+
+There is really no need for a user to look at it constantly, since all the trades are already being logged to the log file:
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/119735427/235093010-c2a96294-08fc-47f1-bf01-89b9e091e04e.png" alt="alt-text">
+</p>
+
+Now to make an appropriate amount of forward testing a bot must work constantly for not less than a week. Keeping a personal machine running for this kind of time is a challenge by itself, so I hosted it on **google cloud** VM. The least possible CPU amount costs about $0.02 per day to run and is more than enough for such a script to run.
 
 
