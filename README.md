@@ -8,14 +8,6 @@ This is an indicator-based binance trading bot & script to scrape / backtest his
 - Create a bot that trades on Binance testnet using a chosen strategy and records its actions to a CSV and log file
 - Analyze trades and show a dataframe and returns of the trading strategy
 
-## Goals (TODO) ✔️
-
-- [x] Launch bot at a remote VM
-- [ ] Implement and test additional strategies
-- [ ] Implement the bot on the live Binance exchange and track its performance
-- [ ] Use ML to optimize live strategy coefficients and parameters
-- [ ] Build a front-end interface to visualize bot performance and trading activity
-
 ## Technologies used 🛠
 
  - Python 
@@ -28,7 +20,7 @@ This is an indicator-based binance trading bot & script to scrape / backtest his
 
 ## Description 🤔
 
-#### Scraping
+#### Scraping 📃
 
 To scrape data I am using **Bitstamp API** (web link). It is fairly simple: choose dates and generate according timestamps, make a request, recieve Open-High-Low-Close data (candlesticks), strip surplus from recieved data and write to csv using **pandas**.
 - API: https://www.bitstamp.net/api/
@@ -46,7 +38,7 @@ As a little extra: scraping.py builds a candlestick plot from recieved data with
 </p>
 
 
-#### Backtest
+#### Backtest 📜
 
 - backtest.py : test chosen strategy against a grid of coefficients
 - backtest_single.py : test a single pair of coefficients and get in-depth data
@@ -88,7 +80,7 @@ Alongside dry text statistic we can build a plot for this strategy:
 
 This looks real nice, next step is **forward-testing** this strategy.
 
-#### Forward-testing (a.k.a. trading bot)
+#### Forward-testing (a.k.a. trading bot) 🪙
 
 Bot (bot.py) has a simple moveset: 
 - each second it makes a request to the binance api via **binance.Client** to get candlestick data
@@ -115,4 +107,76 @@ There is really no need for a user to look at it constantly, since all the trade
 
 Now to make an appropriate amount of forward testing a bot must work constantly for not less than a week. Keeping a personal machine running for this kind of time is a challenge by itself, so I hosted it on **google cloud** VM. The least possible CPU amount costs about $0.02 per day to run and is more than enough for such a script to run.
 
+To launch the bot and keep it running when the terminal is closed (and close it as well if it is running at the moment), I use a bash script:
 
+```
+#!/bin/bash
+
+# Check if the bot.py process is currently running
+if pgrep -f "python3 bot.py" >/dev/null; then
+    # If running, kill the process
+    echo "Bot is currently running. Stopping..."
+    pkill -f "python3 bot.py"
+    echo "Bot stopped."
+else
+    # If not running, start the process
+    echo "Bot is not running. Starting..."
+    nohup python3 bot.py > nohup.out 2>&1 &
+    echo "Bot started."
+fi
+```
+
+And another one to check if the bot is currently running without killing it / opening a new instance:
+
+```
+#!/bin/bash
+
+# Check if the bot.py process is currently running
+if pgrep -f "python3 bot.py" >/dev/null; then
+    # If running, kill the process
+    echo "Bot is currently running."
+else
+    # If not running,
+    echo "Bot is not running."
+fi
+```
+
+After the bot makes quite some trades, they need to be analyzed to ensure viability of chosen strategy.
+
+#### Analysis 📈
+
+To perform trades analysis there is a very simple script to display all the trades in form of **pandas** dataframe trade_analysis.py:
+A successful day of trading would look like this:
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/119735427/235101566-0167ee85-baef-4601-a50e-ed1596eca626.png" alt="alt-text">
+</p>
+
+## Goals (TODO) ✔️
+
+- [x] Launch bot at a remote VM
+- [ ] Implement and test additional strategies
+- [ ] Implement the bot on the live Binance exchange and track its performance
+- [ ] Use ML to optimize live strategy coefficients and parameters
+- [ ] Build a front-end interface to visualize bot performance and trading activity
+
+#### Scraping
+
+- [ ] Perform trading with Binance client for consistency
+- [ ] Add error handling
+
+#### Backtesting
+
+- [ ] Increase metrics diversity (Sharpe ratio, maximum drawdown)
+- [ ] Add more technical indicators
+
+#### Bot
+
+- [ ] Error handling
+- [ ] More trading pairs / different assets
+- [ ] Stop-loss and take-profits for risk management
+
+#### Analysis
+
+- [ ] Visualisation
+- [ ] More advanced analysis techniques (time-series forecasting)
