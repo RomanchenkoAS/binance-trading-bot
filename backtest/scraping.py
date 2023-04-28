@@ -7,7 +7,7 @@ currency_pair = "btcusd"
 url = f"https://www.bitstamp.net/api/v2/ohlc/{currency_pair}/"
 
 # Before
-start = datetime.now() - timedelta(1)
+start = datetime.now() - timedelta(30)
 # Now
 end = datetime.now()
 

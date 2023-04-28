@@ -7,7 +7,7 @@ btc_price = pd.read_csv("data_1m.csv")[["timestamp", "close"]]
 btc_price["date"] = pd.to_datetime(btc_price["timestamp"], unit="s")
 btc_price = btc_price.set_index("date")["close"]
 
-for window in range(100, 101): #optimize range (window = 4 gives 16.64%)
+for window in range(1, 101): #optimize range (window = 4 gives 16.64%)
     # VectorBT part
     rsi = vbt.RSI.run(btc_price, window=window, short_name="rsi")
 
