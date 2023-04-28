@@ -173,11 +173,6 @@ if __name__ == "__main__":
             old_rsi = rsi
             rsi = get_rsi(asset)
 
-            # print("entry:", entry)
-            # print("exit:", exit)
-            # print("rsi:", rsi)
-            # print("old rsi:", old_rsi)
-
             if account["is_buying"]:
                 # If crossover up-to-down ▼
                 if rsi < entry and old_rsi > entry:
@@ -191,7 +186,7 @@ if __name__ == "__main__":
                     do_trade(account, client, asset, "sell", 0.01)
 
             print("[INFO] current rsi =", round(rsi, 3), " |",
-                  time.strftime("%y:%m:%d %H:%M:%S", current_time))
+                  time.strftime("%y.%m.%d %H:%M:%S", current_time))
 
             time.sleep(2)
 
