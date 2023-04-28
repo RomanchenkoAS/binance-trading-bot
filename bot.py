@@ -25,8 +25,8 @@ window = 100
 def fetch_klines(asset):
 
     klines = client.get_historical_klines(
-        asset, Client.KLINE_INTERVAL_1MINUTE, "1 hour ago UTC")
-
+        asset, Client.KLINE_INTERVAL_1MINUTE, "2 hour ago UTC")
+    
     klines = [[x[0], float(x[4])] for x in klines]
 
     klines = pd.DataFrame(klines, columns=["time", "price"])
@@ -40,7 +40,9 @@ def get_rsi(asset):
     klines = fetch_klines(asset)
     # Use tech analysis pandas module
     klines["rsi"] = ta.rsi(close=klines["price"], length=window)
-
+    
+    print(klines["rsi"].iloc[-1])
+    
     return klines["rsi"].iloc[-1]
 
 
@@ -170,6 +172,11 @@ if __name__ == "__main__":
 
             old_rsi = rsi
             rsi = get_rsi(asset)
+
+            # print("entry:", entry)
+            # print("exit:", exit)
+            # print("rsi:", rsi)
+            # print("old rsi:", old_rsi)
 
             if account["is_buying"]:
                 # If crossover up-to-down ▼
