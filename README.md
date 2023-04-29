@@ -141,6 +141,14 @@ else
 fi
 ```
 
+Another way to run the script is via screen-detacher command, e.g. tmux
+
+``` 
+tmux new-session # create new screen
+python3 bot.py # run the script, then detach with ctrl+b -> d
+tmux attach-session # reattach the screen
+```
+
 After the bot makes quite some trades, they need to be analyzed to ensure viability of chosen strategy.
 
 #### Analysis 📈
