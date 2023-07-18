@@ -1,0 +1,6 @@
+01-38-38 : sell BTCUSDT 0.01 for 271.49752658 per
+07-46-15 : buy BTCUSDT 0.01 for 268.2137 per
+10-40-18 : sell BTCUSDT 0.01 for 269.0385 per
+11-44-56 : buy BTCUSDT 0.01 for 265.955 per
+13-51-50 : sell BTCUSDT 0.01 for 266.7373 per
+21-43-17 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)

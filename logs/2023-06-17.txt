@@ -1,0 +1,3 @@
+01-47-28 : buy BTCUSDT 0.01 for 262.6266 per
+04-56-19 : sell BTCUSDT 0.01 for 263.3364 per
+07-54-12 : buy BTCUSDT 0.01 for 265.7633 per

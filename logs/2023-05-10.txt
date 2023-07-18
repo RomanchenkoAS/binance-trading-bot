@@ -1,0 +1,4 @@
+00-19-01 : sell BTCUSDT 0.01 for 276.90000000000003 per
+17-15-26 : buy BTCUSDT 0.01 for 277.4863 per
+20-18-38 : sell BTCUSDT 0.01 for 278.4078 per
+21-24-03 : buy BTCUSDT 0.01 for 273.4802 per

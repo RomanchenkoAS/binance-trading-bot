@@ -1,0 +1,3 @@
+05-43-09 : buy BTCUSDT 0.01 for 259.019 per
+09-39-57 : sell BTCUSDT 0.01 for 259.4728 per
+20-06-26 : buy BTCUSDT 0.01 for 255.192 per

@@ -1,10 +1,10 @@
-#? This one is importand
+#? This one is important
 .env
 
 #* These dont matter
 # /trades
 # /logs
-*.csv
-*.txt
+# *.csv
+# *.txt
 .additions.txt
 .connection

@@ -1,0 +1,6 @@
+02-49-51 : buy BTCUSDT 0.01 for 268.2975 per
+07-44-59 : [ERR] ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+08-56-59 : sell BTCUSDT 0.01 for 269.0635 per
+19-32-14 : buy BTCUSDT 0.01 for 267.1528315 per
+21-31-01 : sell BTCUSDT 0.01 for 269.3999 per
+23-31-26 : buy BTCUSDT 0.01 for 267.2502 per

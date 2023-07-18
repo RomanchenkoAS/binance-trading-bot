@@ -1,0 +1,14 @@
+04-55-38 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+04-56-29 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+05-00-35 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+05-07-23 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+05-08-33 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+05-14-00 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+05-15-46 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+06-28-01 : sell BTCUSDT 0.01 for 301.9379 per
+07-44-48 : buy BTCUSDT 0.01 for 302.0312 per
+08-17-27 : sell BTCUSDT 0.01 for 302.56303304 per
+11-22-04 : buy BTCUSDT 0.01 for 302.0 per
+16-42-32 : sell BTCUSDT 0.01 for 303.1822 per
+19-19-20 : buy BTCUSDT 0.01 for 301.72240000000005 per
+21-30-01 : sell BTCUSDT 0.01 for 301.91900000000004 per

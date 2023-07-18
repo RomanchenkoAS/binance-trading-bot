@@ -1,0 +1,4 @@
+00-00-07 : buy BTCUSDT 0.01 for 295.0414 per
+00-32-23 : sell BTCUSDT 0.01 for 295.9466 per
+00-44-30 : buy BTCUSDT 0.01 for 296.871 per
+17-27-46 : sell BTCUSDT 0.01 for 288.4168 per

@@ -1,0 +1,28 @@
+06-30-40 : sell BTCUSDT 0.01 for 305.87992044000003 per
+09-22-30 : buy BTCUSDT 0.01 for 303.8568 per
+15-17-54 : sell BTCUSDT 0.01 for 306.85748564 per
+17-14-38 : buy BTCUSDT 0.01 for 306.18 per
+17-48-39 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-49-39 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-50-33 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-51-13 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-51-45 : sell BTCUSDT 0.01 for 305.5488 per
+17-52-31 : buy BTCUSDT 0.01 for 305.6 per
+17-53-23 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-54-56 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-55-47 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-57-00 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-57-57 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+17-59-45 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-00-58 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-02-30 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-03-44 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-04-30 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-05-28 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-06-17 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-07-15 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-08-03 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-08-44 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-09-45 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-17-30 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+18-22-40 : [ERR] HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
