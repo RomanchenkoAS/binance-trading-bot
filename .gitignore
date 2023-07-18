@@ -1,6 +1,9 @@
+#? This one is importand
 .env
-/trades
-/logss
+
+#* These dont matter
+# /trades
+# /logs
 *.csv
 *.txt
 .additions.txt
