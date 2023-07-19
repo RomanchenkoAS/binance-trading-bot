@@ -12,7 +12,7 @@ start = datetime.now() - timedelta(30)
 end = datetime.now()
 
 dates = pd.date_range(start, end, freq="6H")
-dates = [int(x.value/10**9) for x in list(dates)]
+dates = [int(x.value / 10**9) for x in list(dates)]
 
 # print([datetime.fromtimestamp(x).strftime("%m/%d/%Y, %H:%M:%S")
 #       for x in dates])
@@ -21,8 +21,11 @@ master_data = []
 
 print("Time intervals: ")
 for first, last in zip(dates, dates[1:]):
-    print(datetime.fromtimestamp(first).strftime("%m/%d/%Y, %H:%M:%S"),
-          " -> ", datetime.fromtimestamp(last).strftime("%m/%d/%Y, %H:%M:%S"))
+    print(
+        datetime.fromtimestamp(first).strftime("%m/%d/%Y, %H:%M:%S"),
+        " -> ",
+        datetime.fromtimestamp(last).strftime("%m/%d/%Y, %H:%M:%S"),
+    )
 
     params = {
         "step": 60,  # seconds
@@ -56,16 +59,24 @@ df.to_csv("data.csv", index=False)
 
 # Display plot if needed
 # Create a datetime column
-df['datetime'] = df['timestamp'].apply(lambda x: pd.to_datetime(x, unit='s'))
+df["datetime"] = df["timestamp"].apply(lambda x: pd.to_datetime(x, unit="s"))
 
 # Configure plot
-fig = go.Figure(data=[go.Candlestick(x=df['datetime'], open=df['open'],
-                high=df['high'], low=df['low'], close=df['close'])])
+fig = go.Figure(
+    data=[
+        go.Candlestick(
+            x=df["datetime"],
+            open=df["open"],
+            high=df["high"],
+            low=df["low"],
+            close=df["close"],
+        )
+    ]
+)
 
 fig.update_layout(xaxis_rangeslider_visible=False)  # Remove slider
-fig.update_layout(template='plotly_dark')  # Add some style
-fig.update_layout(yaxis_title='BTCUSDT pair',
-                  xaxis_title='Date-time')  # Name axes
+fig.update_layout(template="plotly_dark")  # Add some style
+fig.update_layout(yaxis_title="BTCUSDT pair", xaxis_title="Date-time")  # Name axes
 
 # Display plot
 fig.show()

@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-folder_path = 'trades'
+folder_path = "trades"
 
 df = pd.DataFrame()
 
@@ -13,8 +13,8 @@ for filename in files:
         df = pd.concat([df, add], ignore_index=True)
 
 # Set the options to display unlimited rows and columns
-pd.set_option('display.max_rows', None)
-pd.set_option('display.max_columns', None)
+pd.set_option("display.max_rows", None)
+pd.set_option("display.max_columns", None)
 
 trades = []
 
@@ -25,19 +25,20 @@ for index in range(0, len(df), 2):
     except IndexError:
         # Last opened trade is not yet closed
         continue
-    
+
     trade = {
-        "sym": buy_trade['symbol'],
-        "buy_price": buy_trade['price'],
-        "sell_price": sell_trade['price'],
-        "profit": sell_trade['price'] - buy_trade['price'],
-        "profit%": 100 * (sell_trade['price'] - buy_trade['price']) / buy_trade['price']
+        "sym": buy_trade["symbol"],
+        "buy_price": buy_trade["price"],
+        "sell_price": sell_trade["price"],
+        "profit": sell_trade["price"] - buy_trade["price"],
+        "profit%": 100
+        * (sell_trade["price"] - buy_trade["price"])
+        / buy_trade["price"],
     }
 
     trades.append(trade)
 
 trades = pd.DataFrame(trades)
-
 
 
 print(trades)

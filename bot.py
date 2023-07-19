@@ -23,10 +23,10 @@ window = 100
 
 
 def fetch_klines(asset):
-
     klines = client.get_historical_klines(
-        asset, Client.KLINE_INTERVAL_1MINUTE, "2 hour ago UTC")
-    
+        asset, Client.KLINE_INTERVAL_1MINUTE, "2 hour ago UTC"
+    )
+
     klines = [[x[0], float(x[4])] for x in klines]
 
     klines = pd.DataFrame(klines, columns=["time", "price"])
@@ -36,18 +36,16 @@ def fetch_klines(asset):
 
 
 def get_rsi(asset):
-
     klines = fetch_klines(asset)
     # Use tech analysis pandas module
     klines["rsi"] = ta.rsi(close=klines["price"], length=window)
-    
+
     print(klines["rsi"].iloc[-1])
-    
+
     return klines["rsi"].iloc[-1]
 
 
 def create_account():
-
     account = {
         "is_buying": True,
         "assets": {},
@@ -74,7 +72,6 @@ def log(msg):
 
 
 def trade_log(symbol, side, price, amount):
-
     log(f"{side} {symbol} {amount} for {price} per")
 
     if not os.path.isdir("trades"):
@@ -95,7 +92,6 @@ def trade_log(symbol, side, price, amount):
 
 
 def do_trade(account, client, asset, side, quantity):
-
     print("[LOG] Making a trade...")
 
     if side == "buy":
@@ -131,8 +127,9 @@ def do_trade(account, client, asset, side, quantity):
 
     # This list comprehension takes each separate part of buy, multiplies price by quantity
     # and then sums it up to get the total price
-    price_paid = sum([float(fill["price"]) * float(fill["qty"])
-                     for fill in order["fills"]])
+    price_paid = sum(
+        [float(fill["price"]) * float(fill["qty"]) for fill in order["fills"]]
+    )
 
     # print(price_paid)
 
@@ -146,13 +143,11 @@ def do_trade(account, client, asset, side, quantity):
 
 
 if __name__ == "__main__":
-
     rsi = get_rsi(asset)
     old_rsi = rsi  # to check crossover event
 
     # Main working loop
     while True:
-
         current_time = time.localtime()
         seconds = current_time.tm_sec
 
@@ -185,8 +180,12 @@ if __name__ == "__main__":
                     # trade sell
                     do_trade(account, client, asset, "sell", 0.01)
 
-            print("[INFO] current rsi =", round(rsi, 3), " |",
-                  time.strftime("%y.%m.%d %H:%M:%S", current_time))
+            print(
+                "[INFO] current rsi =",
+                round(rsi, 3),
+                " |",
+                time.strftime("%y.%m.%d %H:%M:%S", current_time),
+            )
 
             time.sleep(2)
 
