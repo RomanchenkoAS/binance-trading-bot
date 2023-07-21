@@ -51,9 +51,7 @@ trades["sell_price"] = trades["sell_price"].astype(float).round(3)
 trades["profit"] = trades["profit"].astype(float).round(3)
 trades["profit%"] = trades["profit%"].astype(float).round(3)
 
-
 print(trades)
-
 
 total_profit = trades["profit"].sum(axis=0)
 
