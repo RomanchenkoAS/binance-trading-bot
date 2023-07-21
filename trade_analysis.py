@@ -11,6 +11,9 @@ files = sorted(os.listdir(folder_path), reverse=False)
 for filename in files:
     if os.path.isfile(f"{folder_path}/{filename}"):
         add = pd.read_csv(f"trades/{filename}")
+        # Get filename without extension
+        date = os.path.splitext(filename)[0]
+        add["date"] = date
         df = pd.concat([df, add], ignore_index=True)
 
 # To see full history use "full" key on launch
@@ -31,6 +34,7 @@ for index in range(0, len(df), 2):
 
     trade = {
         "sym": buy_trade["symbol"],
+        "date": buy_trade["date"],
         "buy_price": buy_trade["price"],
         "sell_price": sell_trade["price"],
         "profit": sell_trade["price"] - buy_trade["price"],
@@ -42,6 +46,10 @@ for index in range(0, len(df), 2):
     trades.append(trade)
 
 trades = pd.DataFrame(trades)
+trades["buy_price"] = trades["buy_price"].astype(float).round(3)
+trades["sell_price"] = trades["sell_price"].astype(float).round(3)
+trades["profit"] = trades["profit"].astype(float).round(3)
+trades["profit%"] = trades["profit%"].astype(float).round(3)
 
 
 print(trades)
