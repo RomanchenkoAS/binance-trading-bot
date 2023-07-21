@@ -56,7 +56,7 @@ print(trades)
 # Show totals
 total_profit = trades["profit"].sum(axis=0)
 total_profit_p = trades["profit%"].sum(axis=0)
-total_profit_str = f"+{total_profit:.2f}%" if total_profit >= 0 else f"{total_profit:.2f}%"
+total_profit_str = f"+{total_profit:.2f}" if total_profit >= 0 else f"{total_profit:.2f}"
 total_profit_p_str = f"+{total_profit_p:.2f}%" if total_profit_p >= 0 else f"{total_profit_p:.2f}%"
 totals = f"Total profit earned = {total_profit_str}USDT ({total_profit_p_str})"
 print(totals)
