@@ -1,5 +1,6 @@
 #? This one is important
 .env
+.venv
 
 #* These dont matter
 # /trades
