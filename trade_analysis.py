@@ -13,7 +13,7 @@ for filename in files:
         add = pd.read_csv(f"trades/{filename}")
         df = pd.concat([df, add], ignore_index=True)
 
-# Set the options to display unlimited rows and columns
+# To see full history use "full" key on launch
 if len(sys.argv) > 1 and sys.argv[1] == "full":
     # Set the options to display unlimited rows and columns
     pd.set_option("display.max_rows", None)
