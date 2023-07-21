@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import datetime
 import pandas as pd
 
 folder_path = "trades"
@@ -50,9 +51,23 @@ trades["buy_price"] = trades["buy_price"].astype(float).round(3)
 trades["sell_price"] = trades["sell_price"].astype(float).round(3)
 trades["profit"] = trades["profit"].astype(float).round(3)
 trades["profit%"] = trades["profit%"].astype(float).round(3)
-
 print(trades)
 
+# Show totals
 total_profit = trades["profit"].sum(axis=0)
+total_profit_p = trades["profit%"].sum(axis=0)
+total_profit_str = f"+{total_profit:.2f}%" if total_profit >= 0 else f"{total_profit:.2f}%"
+total_profit_p_str = f"+{total_profit_p:.2f}%" if total_profit_p >= 0 else f"{total_profit_p:.2f}%"
+totals = f"Total profit earned = {total_profit_str}USDT ({total_profit_p_str})"
+print(totals)
 
-print(f"Total profit earned = {total_profit:.2f}USDT")
+# Show daily
+date_start = trades["date"].iloc[0]
+date_over = trades["date"].iloc[-1]
+date_start = datetime.strptime(date_start, "%Y-%m-%d")
+date_over = datetime.strptime(date_over, "%Y-%m-%d")
+delta = date_over - date_start
+totals = f"Data recordered for {delta.days} days, totaling daily return +{total_profit_p / delta.days :.2f}%" 
+if total_profit_p < 0:
+    totals.replace("+", "-")
+print(totals)
