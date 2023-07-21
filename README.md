@@ -160,6 +160,12 @@ A successful day of trading would look like this:
 <img src="https://user-images.githubusercontent.com/119735427/235101566-0167ee85-baef-4601-a50e-ed1596eca626.png" alt="alt-text">
 </p>
 
+## Result
+
+Bot has been working in forward-testing for 75 days and got following result:
+
+
+
 ## Goals (TODO) ✔️
 
 - [x] Launch bot at a remote VM
