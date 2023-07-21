@@ -1,5 +1,6 @@
-import pandas as pd
 import os
+import sys
+import pandas as pd
 
 folder_path = "trades"
 
@@ -13,8 +14,10 @@ for filename in files:
         df = pd.concat([df, add], ignore_index=True)
 
 # Set the options to display unlimited rows and columns
-pd.set_option("display.max_rows", None)
-pd.set_option("display.max_columns", None)
+if len(sys.argv) > 1 and sys.argv[1] == "full":
+    # Set the options to display unlimited rows and columns
+    pd.set_option("display.max_rows", None)
+    pd.set_option("display.max_columns", None)
 
 trades = []
 
