@@ -164,7 +164,9 @@ A successful day of trading would look like this:
 
 Bot has been working in forward-testing for 75 days and got following result:
 
-
+<p align="center">
+<img src="https://github.com/RomanchenkoAS/binance-trading-bot/assets/119735427/a357a264-b8fb-4bb4-9e99-aa2574b63aad" alt="alt-text">
+</p>
 
 ## Goals (TODO) ✔️
 
