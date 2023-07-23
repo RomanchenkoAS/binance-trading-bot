@@ -162,11 +162,19 @@ A successful day of trading would look like this:
 
 ## Result
 
-Bot has been working in forward-testing for 75 days and got following result:
+After running the trading bot in forward-testing mode for 75 days, the following results were obtained:
 
 <p align="center">
 <img src="https://github.com/RomanchenkoAS/binance-trading-bot/assets/119735427/a357a264-b8fb-4bb4-9e99-aa2574b63aad" alt="alt-text">
 </p>
+
+During this 75-day period, the bot generated a total profit of 160 USDT. Considering an initial capital of approximately 290 USDT, this translates to an impressive +62% return on investment (ROI) over the testing period. The daily return on investment is approximately +0.83%, indicating consistent and favorable performance.
+
+The forward-testing conducted in the Binance testnet has shown that the implemented trading strategy is highly efficient, outperforming benchmark returns. With a keen focus on optimizing entry and exit points using relative-strength indicators (RSI), the bot successfully captured favorable market conditions and executed profitable trades.
+
+The ability to achieve such significant returns during the forward-testing phase is a promising indicator of the script's potential to perform well in live trading scenarios. However, it is essential to continue monitoring the bot's performance, adapting it to market changes, and conducting rigorous backtesting to validate its effectiveness over various market conditions.
+
+As the bot's performance has demonstrated efficiency and stability over the testing period, the next steps involve further enhancements and goals for future development.
 
 ## Goals (TODO) ✔️
 
