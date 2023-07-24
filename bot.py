@@ -131,8 +131,6 @@ def do_trade(account, client, asset, side, quantity):
         [float(fill["price"]) * float(fill["qty"]) for fill in order["fills"]]
     )
 
-    # print(price_paid)
-
     # Log trade
     trade_log(asset, side, price_paid, quantity)
 
@@ -163,8 +161,6 @@ if __name__ == "__main__":
             with open("bot_account.json") as f:
                 account = json.load(f)
 
-            # print("account: ", account)
-
             old_rsi = rsi
             rsi = get_rsi(asset)
 
@@ -192,4 +188,3 @@ if __name__ == "__main__":
         except Exception as _ex:
             log("[ERR] " + str(_ex))
             time.sleep(30)
-            # sys.exit()
