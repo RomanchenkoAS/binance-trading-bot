@@ -187,7 +187,7 @@ As the bot's performance has demonstrated efficiency and stability over the test
 #### Scraping
 
 - [ ] Perform trading with Binance client for consistency
-- [ ] Add error handling
+- [X] Add error handling
 
 #### Backtesting
 
@@ -196,11 +196,11 @@ As the bot's performance has demonstrated efficiency and stability over the test
 
 #### Bot
 
-- [ ] Error handling
+- [X] Error handling
 - [ ] More trading pairs / different assets
-- [ ] Stop-loss and take-profits for risk management
+- [X] Stop-loss and take-profits for risk management
 
 #### Analysis
 
-- [ ] Visualisation
+- [X] Visualisation
 - [ ] More advanced analysis techniques (time-series forecasting)
